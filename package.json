@@ -1,0 +1,24 @@
+{
+  "name": "fincheck-backend",
+  "version": "1.0.0",
+  "description": "Backend for FinCheck — financial management API built with Node.js.  Developed as part of my internship training.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newtsarthur/FinCheck-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/newtsarthur/FinCheck-Backend/issues"
+  },
+  "homepage": "https://github.com/newtsarthur/FinCheck-Backend#readme",
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "typescript": "^5.9.2"
+  }
+}
