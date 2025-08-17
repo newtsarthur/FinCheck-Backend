@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String       @id @default(uuid())
+  email         String       @unique
+  name          String
+  password      String
+  phone         String?      @unique
+  address       String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  accounts      Account[]
+  transactions  Transaction[]
+  categories    Category[]
+  sessions      Session[]
+}
+
+model Account {
+  id          String      @id @default(uuid())
+  name        String
+  type        AccountType
+  balance     Decimal     @default(0) @db.Decimal(10, 2)
+  color       String
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  transactions Transaction[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@unique([userId, name])
+}
+
+model Transaction {
+  id          String      @id @default(uuid())
+  description String
+  amount      Decimal     @db.Decimal(10, 2)
+  type        TransactionType
+  date        DateTime
+  categoryId  String?
+  category    Category?   @relation(fields: [categoryId], references: [id])
+  accountId   String
+  account     Account     @relation(fields: [accountId], references: [id])
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Category {
+  id          String      @id @default(uuid())
+  name        String
+  color       String
+  icon        String
+  type        TransactionType
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  transactions Transaction[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@unique([userId, name])
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  token        String   @unique
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
+enum AccountType {
+  CHECKING
+  SAVINGS
+  INVESTMENT
+  CREDIT_CARD
+  OTHER
+}

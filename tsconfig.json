@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    /* Módulos e Ambiente de Execução */
+    // Define a versão do JavaScript para a qual o TypeScript será compilado.
+    "target": "es2022",
+    // Define o sistema de módulos. 'ESNext' é a melhor opção para 'type: "module"' no package.json.
+    "module": "ESNext",
+    // Define como os módulos são resolvidos. 'Node' ou 'NodeNext' são ideais para Node.js.
+    "moduleResolution": "Node",
+    // Adicione esta opção para permitir a importação de módulos do tipo CommonJS.
+    "esModuleInterop": true,
+
+    /* Diretórios */
+    // Diretório onde os arquivos TypeScript estão.
+    "rootDir": "./src",
+    // Diretório de saída para os arquivos compilados (JavaScript).
+    "outDir": "./dist",
+
+    /* Configurações de Compilação */
+    // Habilita todas as opções rigorosas de verificação de tipo.
+    "strict": true,
+    // Cria arquivos .map para facilitar a depuração.
+    "sourceMap": true,
+    // Cria arquivos de declaração (.d.ts) para tipos.
+    "declaration": true,
+    // Cria arquivos .map para as declarações.
+    "declarationMap": true,
+
+    /* Opções Adicionais */
+    // Garante que as importações e exportações sejam tratadas de forma estrita.
+    "verbatimModuleSyntax": true,
+    // Evita erros causados por bibliotecas sem tipagem correta.
+    "skipLibCheck": true,
+  },
+  // Inclui apenas a pasta src na compilação.
+  "include": ["src/**/*"],
+  // Exclui a pasta node_modules e dist da compilação.
+  "exclude": ["node_modules", "dist"]
+}
