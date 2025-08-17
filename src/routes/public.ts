@@ -1,6 +1,6 @@
 import express from 'express';
 import type { Router } from 'express';
-import { register, login } from '../controllers/userController';
+import { register, login } from '../controllers/user/userController';
 
 // Cria uma instância de Router
 const router: Router = express.Router();

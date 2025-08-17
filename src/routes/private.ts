@@ -1,6 +1,6 @@
 import express from 'express';
 import type { Application, Router, Request, Response, NextFunction } from 'express';
-import { deleteUser, updateUser } from '../controllers/userController';
+import { deleteUser, updateUser } from '../controllers/user/userController';
 
 // A importação deve usar a extensão '.js' para ser compatível com as configurações do TypeScript
 // e do Node.js
